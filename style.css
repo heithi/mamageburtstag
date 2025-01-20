@@ -130,8 +130,13 @@ h1 {
     margin: 2px 1px; /* Kein zusätzlicher Abstand zwischen den Tasten */
   }
   /* Spezielle Anpassung für das "+" bei kleinen Bildschirmen */
-  .cell:nth-child(8) {
-    left: 10px; /* Schiebt das "+" weiter nach links */
-  }
+  
+    .cell:nth-child(8), .cell:nth-child(19), .cell:nth-child(30), .cell:nth-child(41), .cell:nth-child(52), .cell:nth-child(63) {
+      left: 7px; /* Positionierung auf der X-Achse */
+      width: 20px; /* Kleinere Breite */
+      height: 20px; /* Kleinere Höhe */
+      
+    }
+  
 }
 
