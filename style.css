@@ -41,13 +41,13 @@ h1 {
 
 /* Klassen für Feedback */
 .correct {
-  background-color: #6aaa64;
+  background-color: #6aaa64 !important;
 } /* Grün */
 .present {
-  background-color: #c9b458;
+  background-color: #c9b458 !important;
 } /* Gelb */
 .absent {
-  background-color: #3a3a3c;
+  background-color: #3a3a3c !important;
 } /* Grau */
 
 /* Tastatur */
