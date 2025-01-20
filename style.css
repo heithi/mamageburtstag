@@ -12,6 +12,12 @@ body {
   padding: 20px; /* Padding für Mobilgeräte */
 }
 
+/* Anpassung für das "+" */
+.cell:nth-child(8) {
+  position: relative;
+  left: 18px;
+}
+
 h1 {
   margin-bottom: 20px;
   font-size: 2.5rem; /* Größere Schriftgröße für Desktop */
@@ -122,6 +128,10 @@ h1 {
     height: 55px;
     font-size: 1rem; /* Schriftgröße anpassen */
     margin: 2px 1px; /* Kein zusätzlicher Abstand zwischen den Tasten */
+  }
+  /* Spezielle Anpassung für das "+" bei kleinen Bildschirmen */
+  .cell:nth-child(8) {
+    left: 10px; /* Schiebt das "+" weiter nach links */
   }
 }
 
