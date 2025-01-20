@@ -91,55 +91,82 @@ function removeLetter() {
 }
 
 function checkWords() {
-    if (currentCol < cols) return;
-  
-    let guess1 = "";
-    let guess2 = "";
-  
-    // Erster Versuch: AUSRITT
-    for (let i = 0; i < 7; i++) {
-      const index = currentRow * cols + i;
-      guess1 += cells[index].textContent || " ";
-    }
-  
-    // Zweiter Versuch: EIS
-    for (let i = 8; i < 11; i++) {
-      const index = currentRow * cols + i;
-      guess2 += cells[index].textContent || " ";
-    }
-  
-    // Überprüfe die Lösungen
-    if (guess1.trim() === solution1 && guess2.trim() === solution2) {
-      // Overlay-Nachricht erstellen
-      const messageElement = document.createElement("div");
-      messageElement.id = "overlayMessage";
-      messageElement.textContent = "Gewonnen! 🐎 + 🍦";
-      messageElement.style.position = "absolute";
-      messageElement.style.top = "50%";
-      messageElement.style.left = "50%";
-      messageElement.style.transform = "translate(-50%, -50%)";
-      messageElement.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-      messageElement.style.color = "white";
-      messageElement.style.padding = "20px";
-      messageElement.style.borderRadius = "10px";
-      messageElement.style.textAlign = "center";
-      messageElement.style.zIndex = "1000";
-  
-      // Nachricht in das Dokument einfügen
-      document.body.appendChild(messageElement);
-  
-      gameOver = true;
+  if (currentCol < cols) return;
+
+  let guess1 = "";
+  let guess2 = "";
+
+  // Erster Versuch: AUSRITT
+  for (let i = 0; i < 7; i++) {
+    const index = currentRow * cols + i;
+    guess1 += cells[index].textContent || " ";
+  }
+
+  // Zweiter Versuch: EIS
+  for (let i = 8; i < 11; i++) {
+    const index = currentRow * cols + i;
+    guess2 += cells[index].textContent || " ";
+  }
+
+  // Färbung für den ersten Versuch
+  for (let i = 0; i < 7; i++) {
+    const index = currentRow * cols + i;
+    const letter = guess1[i];
+    if (letter === solution1[i]) {
+      cells[index].classList.add("correct");
+    } else if (solution1.includes(letter)) {
+      cells[index].classList.add("present");
     } else {
-      currentRow++;
-      currentCol = 0;
-  
-      if (currentRow === rows) {
-        document.getElementById("message").textContent =
-          "Verloren! Lösungen: " + solution1 + " und " + solution2;
-        gameOver = true;
-      }
+      cells[index].classList.add("absent");
     }
   }
+
+  // Färbung für den zweiten Versuch
+  for (let i = 0; i < 3; i++) {
+    const index = currentRow * cols + 8 + i;
+    const letter = guess2[i];
+    if (letter === solution2[i]) {
+      cells[index].classList.add("correct");
+    } else if (solution2.includes(letter)) {
+      cells[index].classList.add("present");
+    } else {
+      cells[index].classList.add("absent");
+    }
+  }
+
+  // Überprüfe die Lösungen
+  if (guess1.trim() === solution1 && guess2.trim() === solution2) {
+    // Overlay-Nachricht erstellen
+    const messageElement = document.createElement("div");
+    messageElement.id = "overlayMessage";
+    messageElement.textContent = "Gewonnen! 🐎 + 🍦";
+    messageElement.style.position = "absolute";
+    messageElement.style.top = "50%";
+    messageElement.style.left = "50%";
+    messageElement.style.transform = "translate(-50%, -50%)";
+    messageElement.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+    messageElement.style.color = "white";
+    messageElement.style.padding = "20px";
+    messageElement.style.borderRadius = "10px";
+    messageElement.style.textAlign = "center";
+    messageElement.style.zIndex = "1000";
+
+    // Nachricht in das Dokument einfügen
+    document.body.appendChild(messageElement);
+
+    gameOver = true;
+  } else {
+    currentRow++;
+    currentCol = 0;
+
+    if (currentRow === rows) {
+      document.getElementById("message").textContent =
+        "Verloren! Lösungen: " + solution1 + " und " + solution2;
+      gameOver = true;
+    }
+  }
+}
+
   
 
 // Funktion zum Aktivieren der Zellenbearbeitung
