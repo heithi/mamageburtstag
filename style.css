@@ -129,14 +129,28 @@ h1 {
     font-size: 1rem; /* Schriftgröße anpassen */
     margin: 2px 1px; /* Kein zusätzlicher Abstand zwischen den Tasten */
   }
-  /* Spezielle Anpassung für das "+" bei kleinen Bildschirmen */
+
+  .cell:nth-child(8),
+  .cell:nth-child(19),
+  .cell:nth-child(30),
+  .cell:nth-child(41),
+  .cell:nth-child(52),
+  .cell:nth-child(63) {
+    width: 16px;  /* Kleinere Breite des "+" */
+    height: 16px; /* Kleinere Höhe */
+    font-size: 1rem; /* Kleinere Schriftgröße */
+    left: 4px;  /* Etwas links verschieben */
+    background-color: transparent;  /* Hintergrund transparent */
+    border: none;  /* Kein Rand */
+  }
   
-    .cell:nth-child(8), .cell:nth-child(19), .cell:nth-child(30), .cell:nth-child(41), .cell:nth-child(52), .cell:nth-child(63) {
-      left: 7px; /* Positionierung auf der X-Achse */
-      width: 20px; /* Kleinere Breite */
-      height: 20px; /* Kleinere Höhe */
-      
-    }
-  
+  /* Anpassung der Zellen und Abstand für das "+" */
+  .grid {
+    grid-template-columns: repeat(6, 1fr) 10px repeat(4, 1fr); /* Platz für Lücke bei Feld 8 */
+    grid-gap: 3px;  /* Weniger Abstand zwischen den Zellen */
+  }
 }
+
+  
+
 
